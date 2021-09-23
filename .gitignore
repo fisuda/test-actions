@@ -1,0 +1,13 @@
+data/
+sites-enable/
+config/
+.work/
+.env
+docker-compose.yml
+docker-idm.yml
+docker-cert.yml
+cert.sh
+.vscode/
+Makefile
+coverage/
+*.swp

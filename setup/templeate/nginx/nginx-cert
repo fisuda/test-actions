@@ -1,0 +1,16 @@
+  server {
+    listen 80;
+    server_name HOST;
+
+    location =/ {
+        return 404;
+    }
+
+    location / {
+      default_type "text/plain";
+      root         /var/www/html/HOST;
+    }
+
+    access_log /var/log/nginx/HOST-access.log;
+    error_log /var/log/nginx/HOST-error.log;
+  }
