@@ -25,6 +25,37 @@ sed -i -e "s/^\(GRAFANA=\).*/\1grafana/" config.sh
 sed -i -e "s/^\(IMAGE_CERTBOT=\).*/\1letsfiware\/certmock:0.2.0/" config.sh
 sed -i -e "s/^\(CERT_REVOKE=\).*/\1true/" config.sh
 
-mkdir coverage
+for name in coverage coverage1 coverage2 coverage3
+do
+  if [ -d "${name}" ]; then
+    rm -fr "${name}"
+  fi
+  mkdir "${name}"
+done
+
+sudo rm -f /usr/local/bin/docker-compose
+curl -OL https://github.com/lets-fiware/ngsi-go/releases/download/v0.8.0/ngsi-v0.8.0-linux-amd64.tar.gz
+sudo tar zxvf ngsi-v0.8.0-linux-amd64.tar.gz -C /usr/local/bin
+rm -f ngsi-v0.8.0-linux-amd64.tar.gz
+
 export FIBB_TEST=true
-kcov --exclude-path=tests,.git,setup,coverage ./coverage/ ./lets-fiware.sh example.com
+kcov --exclude-path=tests,.git,setup,coverage ./coverage1/ ./lets-fiware.sh example.com
+
+sleep 5
+
+kcov --exclude-path=tests,.git,setup,coverage ./coverage2/ ./lets-fiware.sh example.com
+
+make clean
+
+while [ "1" != $(docker ps | wc -l) ]
+do
+  sleep 1
+done
+
+git checkout config.sh
+
+IP=($(hostname -I))
+
+kcov --exclude-path=tests,.git,setup,coverage ./coverage3/ ./lets-fiware.sh example.com "${IP[0]}"
+
+kcov --merge ./coverage ./coverage1 ./coverage2 ./coverage3
