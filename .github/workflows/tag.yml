@@ -16,9 +16,8 @@ jobs:
       - if: startsWith( github.ref, 'refs/tags/v' )
         env:
           REF: ${{ github.ref }}
-        run: echo "${REF##*/}"
-      - name: Create Release
         run: |
+          echo "${REF##*/}" && \
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -d "{ \"tag_name\": \"${REF##*/}\", \"name\": \"TEST ${REF##*/}\", \"body\": \"# Test\" \
