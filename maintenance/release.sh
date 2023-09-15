@@ -68,7 +68,9 @@ do
   cp -ar "${FILE}" "${DIR}/"
 done
 
-tar czvf "${DIR}.tgz" "${DIR}"
+FILE="${DIR}.tgz"
+
+tar czvf "${FILE}" "${DIR}"
 
 rm -fr "${DIR}"
 
@@ -80,5 +82,5 @@ echo "UPLOAD URL: ${UPLOAD_URL}"
 
 curl -L -X POST ${UPLOAD_URL} -H "Authorization: Bearer ${GITHUB_TOKEN}" \
      -H 'Accept: application/vnd.github+json' \
-     -H 'Content-Type: application/x-gzip' \
-     --data-binary "${DIR}.tgz"
+     -H 'Content-Type: application/gzip' \
+     --data-binary "${FILE}"
