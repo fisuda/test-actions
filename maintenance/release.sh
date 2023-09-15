@@ -49,7 +49,7 @@ CHANGE_LOG=$(sed -n "${LINES}p" "${FILE}" | sed -e "/^$/d" -e "/^##/d")
 
 echo "${REF##*/}" && \
 curl -X POST \
-     -H "Authorization: token ${TOKEN}" \
+     -H "Authorization: token ${GITHUB_TOKEN}" \
      -d "{ \"tag_name\": \"${TAG}\", \"name\": \"${NAME//-/} ${TAG}\", \"body\": \"${CHANGE_LOG}\"}" \
      https://api.github.com/repos/${REPO}/releases
 
@@ -73,7 +73,7 @@ tar czvf "${DIR}.tgz" "${DIR}"
 rm -fr "${DIR}"
 
 ## Upload tgz file
-#curl -L -X POST ${upload_url} -H "Authorization: Bearer ${TOKEN}" \
+#curl -L -X POST ${upload_url} -H "Authorization: Bearer ${GITHUB_TOKEN}" \
 #     -H 'Accept: application/vnd.github+json' \
 #     -H 'Content-Type: application/x-gzip' \
 #     --data-binary "${DIR}.tgz"
