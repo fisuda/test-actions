@@ -48,10 +48,10 @@ LINES=$(grep -n "^##" -m 2 "${FILE}" | sed -e 's/:.*//g'| sed -z "s/\n/,/g" | se
 CHANGE_LOG=$(sed -n "${LINES}p" "${FILE}" | sed -e "/^$/d" -e "/^##/d" | sed -z "s/\n/\\\\n/g")
 echo "${CHANGE_LOG}"
 
-curl -X POST \
+RES=$(curl -X POST \
      -H "Authorization: token ${GITHUB_TOKEN}" \
-     -d "{ \"tag_name\": \"${TAG}\", \"name\": \"${NAME//-/} ${TAG}\", \"body\": \"${CHANGE_LOG}\"}" \
-     https://api.github.com/repos/${REPO}/releases
+     -d "{ \"tag_name\": \"${TAG}\", \"name\": \"${NAME//-/ } ${TAG}\", \"body\": \"${CHANGE_LOG}\"}" \
+     https://api.github.com/repos/${REPO}/releases)
 
 # Create tgz file
 
@@ -73,7 +73,12 @@ tar czvf "${DIR}.tgz" "${DIR}"
 rm -fr "${DIR}"
 
 ## Upload tgz file
-#curl -L -X POST ${upload_url} -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-#     -H 'Accept: application/vnd.github+json' \
-#     -H 'Content-Type: application/x-gzip' \
-#     --data-binary "${DIR}.tgz"
+
+UPLOAD_URL=`echo "${RES}" | jq '. | .upload_url' | tr -d '"'`
+UPLOAD_URL="${UPLOAD_URL%%\{*}?name=${DIR}.tgz"
+echo "UPLOAD URL: ${UPLOAD_URL}"
+
+curl -L -X POST ${UPLOAD_URL} -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+     -H 'Accept: application/vnd.github+json' \
+     -H 'Content-Type: application/x-gzip' \
+     --data-binary "${DIR}.tgz"
