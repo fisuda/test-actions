@@ -68,7 +68,7 @@ do
   cp -ar "${FILE}" "${DIR}/"
 done
 
-FILE="${DIR}.tgz"
+FILE="${DIR}.tar.gz"
 
 tar czvf "${FILE}" "${DIR}"
 
