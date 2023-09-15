@@ -31,14 +31,16 @@ set -ue
 cd "$(dirname "$0")"
 cd ..
 
-NAME=FIWARE-Small-Bang
-REF=refs/tags/v0.5.0
-
 if ! [ "$(echo "${REF}" | grep "^refs/tags/v")" ]; then
   exit 1
 fi
 
+NAME=${REPO##*/}
 TAG=${REF##*/}
+
+echo "NAME: ${NAME}"
+echo "REF: ${REF}"
+echo "TAG: ${TAG}"
 
 set -ue
 FILE=CHANGELOG.md
@@ -71,7 +73,7 @@ tar czvf "${DIR}.tgz" "${DIR}"
 rm -fr "${DIR}"
 
 ## Upload tgz file
-curl -L -X POST ${upload_url} -H "Authorization: Bearer ${TOKEN}" \
-     -H 'Accept: application/vnd.github+json' \
-     -H 'Content-Type: application/x-gzip' \
-     --data-binary "${DIR}.tgz"
+#curl -L -X POST ${upload_url} -H "Authorization: Bearer ${TOKEN}" \
+#     -H 'Accept: application/vnd.github+json' \
+#     -H 'Content-Type: application/x-gzip' \
+#     --data-binary "${DIR}.tgz"

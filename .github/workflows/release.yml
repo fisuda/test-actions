@@ -9,17 +9,13 @@ jobs:
    create-release-tag:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPO: ${{ github.repository }}
+      REF: ${{ github.ref }}
       TZ: 'Asia/Tokyo'
     steps:
-      # - run: echo ${{ github.ref }} && \
-      - run: echo ${{ github.repository }}
-      - if: startsWith( github.ref, 'refs/tags/v' )
-        env:
-          REF: ${{ github.ref }}
-        run: |
-          echo "${REF##*/}" && \
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -d "{ \"tag_name\": \"${REF##*/}\", \"name\": \"FIWARE Big Bang ${REF##*/}\", \"body\": \"# Test\"}" \
-            https://api.github.com/repos/${{ github.repository }}/releases
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Run release
+        run: ./maintenance/release.sh
