@@ -1,10 +1,10 @@
 # MIT License
 #
-# Copyright (c) 2021 Kazuhito Suda
+# Copyright (c) 2023 Kazuhito Suda
 #
-# This file is part of FIWARE Big Bang
+# This file is part of FIWARE Small Bang
 #
-# https://github.com/lets-fiware/FIWARE-Big-Bang
+# https://github.com/lets-fiware/FIWARE-Small-Bang
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal

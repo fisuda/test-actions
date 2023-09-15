@@ -1,6 +1,6 @@
-# Contributing to FIWARE Big Bang
+# Contributing to FIWARE Small Bang
 
-Thanks for checking out the FIWARE Big Bang Project. We're excited to hear and learn from you. We've put together the following
+Thanks for checking out the FIWARE Small Bang Project. We're excited to hear and learn from you. We've put together the following
 guidelines to help you figure out where you can best be helpful.
 
 ## Ground rules & expectations
@@ -13,7 +13,7 @@ Before we get started, here are a few things we expect from you (and that you sh
 -   This project is released with a [Contributor Code of Conduct](./CODE_OF_CONDUCT.md). By participating in this
     project, you agree to abide by its terms.
 -   If you open a pull request, you must sign the
-    [Individual Contributor License Agreement](https://github.com/lets-fiware/FIWARE-Big-Bang/blob/master/ngsi-go-individual-cla.pdf) by
+    [Individual Contributor License Agreement](https://github.com/lets-fiware/FIWARE-Small-Bang/blob/main/FIWARE-Small-Bang-individual-cla.pdf) by
     stating in a comment _"I have read the CLA Document and I hereby sign the CLA"_
 -   Please ensure that your contribution passes all tests. If there are test failures, you will need to address them
     before we can merge your contribution.
@@ -22,8 +22,8 @@ Before we get started, here are a few things we expect from you (and that you sh
 
 ## How to contribute
 
-If you'd like to contribute, start by searching through the [issues](https://github.com/lets-fiware/FIWARE-Big-Bang/issues) and
-[pull requests](https://github.com/lets-fiware/FIWARE-Big-Bang/pulls) to see whether someone else has raised a similar idea or
+If you'd like to contribute, start by searching through the [issues](https://github.com/lets-fiware/FIWARE-Small-Bang/issues) and
+[pull requests](https://github.com/lets-fiware/FIWARE-Small-Bang/pulls) to see whether someone else has raised a similar idea or
 question.
 
 If you don't see your idea listed, and you think it fits into the goals of this guide, do one of the following:
@@ -31,12 +31,18 @@ If you don't see your idea listed, and you think it fits into the goals of this 
 -   **If your contribution is minor,** such as a typo fix, open a pull request.
 -   **If your contribution is major,** such as a new guide, start by opening an issue first. That way, other people can
     weigh in on the discussion before you do any work.
+-   Send a pull request to the `v0.2.0-next` branch (not main branch).
 
 ## Community
 
 Discussions about the Open Source Guides take place on this repository's
-[Issues](https://github.com/lets-fiware/FIWARE-Big-Bang/issues) and [Pull Requests](https://github.com/lets-fiware/FIWARE-Big-Bang/pulls)
+[Issues](https://github.com/lets-fiware/FIWARE-Small-Bang/issues) and [Pull Requests](https://github.com/lets-fiware/FIWARE-Small-Bang/pulls)
 sections. Anybody is welcome to join these conversations.
 
 Wherever possible, do not take these conversations to private channels, including contacting the maintainers directly.
 Keeping communication public means everybody can benefit and learn from the conversation.
+
+## Disclosure of vulnerabilities
+
+Please contact us by email if you find any vulnerabilities related to FIWARE Small Bang.
+You can send an email to `fiware-small-bang-vulnerabilities@letsfiware.jp`. Do not use GitHub issues.

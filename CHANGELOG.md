@@ -1,53 +1,20 @@
-## FIWARE Big Bang v0.2.0-next
+## FIWARE Small Bang v0.2.0 - 13 September, 2023
 
--   Add certmock (#49)
--   Update README.md (#48)
--   Refactor (#47)
+-   ADD Elasticsearch 7.17.13 (#14)
+-   ADD Quantumleap 0.9.0-dev for arm64 (#13)
+-   ADD Perseo Core 1.13.0 and Perseo FE 1.27.0 for arm64 (#12)
+-   ADD Cygnus 3.2.0 for arm64 (#11)
+-   UPDATE documentation (#10)
 
-## FIWARE Big Bang v0.2.0 - 20 Sep, 2021
+## FIWARE Small Bang v0.1.0 - 10 September, 2023
 
--   Improve docker install on Ubuntu (#44)
--   Add NGSI Go bash autocomplete (#43)
--   Fix cert test case (#42)
--   Fix command parameter for certbot renew and revoke (#41)
--   Add feature to install WireCloud widgets (#40)
--   Add make command (#39)
--   Fix certbot option (#38)
--   Improve coverage (#37)
--   Add coverage (#36)
--   Refactor (#35)
--   Add yamllint feature (#34)
--   Add shellcheck feature (#33)
--   Fix typos in README.md (#32)
--   Add status badges (#31)
--   Improve linting process (#30)
--   Add FIWARE Big Bang logo mark (#29)
--   Improve admin user definition (#28)
--   Add role-based access control to Node-RED (#27)
--   Replace nginx log directory with /var/log/fiware/nginx (#26)
--   Fix server certificate files for setup test (#25)
--   Improve cert process (#24)
--   Add bind-utils for CentOS (#23)
--   Add GitHub Actions Badge (#22)
--   Add setup test to GitHub Actions (#21)
--   Update Orion version to 3.2.0 (#20)
--   Fix owner of log directory on CentOS (#19)
--   Update config.sh (#18)
--   Fix owner, group and mode bits of log files on CentOS (#17)
--   Add syslog settings (#16)
--   Add firewall settings (#15)
--   Fix installing Docker on Ubuntu (#14)
--   Improve Nginx configuration (#13)
--   Add NGSI Go settings (#12)
--   Fix template for nginx (#11)
--   Improve Configuration (#10)
--   Integrate QuantumLeap (#9)
--   Fix missing parameters for certbot (#8)
--   Fix missing pwgen command (#7)
--   Add Admin role for WireCloud (#4)
--   Update template for nginx (#3)
--   Update default settings (#1)
+-   ADD IoT Agent for JSON 2.3.0 for arm64 (#7)
+-   ADD IoT Agent for UL 2.3.0 for arm64 (#6)
+-   ADD STH-Comet 2.10.0 for arm64 (#5)
+-   ADD support for macOS (#4)
+-   ADD documentation (#3)
+-   ADD unit test (#2)
 
-## FIWARE Big Bang v0.1.0 - 2 Sep, 2021
+## FIWARE Small Bang v0.0.1 - 9 Sep, 2023
 
 -   Initial release

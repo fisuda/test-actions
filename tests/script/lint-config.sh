@@ -2,11 +2,11 @@
 
 # MIT License
 #
-# Copyright (c) 2021 Kazuhito Suda
+# Copyright (c) 2023 Kazuhito Suda
 #
-# This file is part of FIWARE Big Bang
+# This file is part of FIWARE Small Bang
 #
-# https://github.com/lets-fiware/FIWARE-Big-Bang
+# https://github.com/lets-fiware/FIWARE-Small-Bang
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -33,17 +33,7 @@ cd ../..
 
 . ./config.sh
 
-if [ "${ORION}" != "orion" ]; then
-  echo "Error ORION value in config.sh"
-  exit 1
-fi
-
-if [ "${KEYROCK}" != "keyrock" ]; then
-  echo "Error ORION value in config.sh"
-  exit 1
-fi
-
-for NAME in COMET QUANTUMLEAP WIRECLOUD NGSIPROXY NODE_RED GRAFANA IDM_ADMIN_USER IDM_ADMIN_EMAIL IDM_ADMIN_PASS FIREWALL CERT_EMAIL CERT_REVOKE CERT_TEST CERT_FORCE_RENEWAL
+for NAME in CYGNUS_MONGO CYGNUS_MYSQL CYGNUS_POSTGRES CYGNUS_ELASTICSEARCH ELASTICSEARCH_PASSWORD MYSQL_ROOT_PASSWORD POSTGRES_PASSWORD COMET QUANTUMLEAP PERSEO WIRECLOUD IOTAGENT_UL IOTAGENT_JSON IOTAGENT_HTTP IOTAGENT_MQTT NODE_RED START_CONTAINER
 do
   eval VAL=\"\$$NAME\"
   if [ -n "$VAL" ]; then
