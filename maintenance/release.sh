@@ -39,15 +39,15 @@ NAME=${REPO##*/}
 TAG=${REF##*/}
 
 echo "NAME: ${NAME}"
+echo "REPO: ${REPO}"
 echo "REF: ${REF}"
 echo "TAG: ${TAG}"
 
-set -ue
 FILE=CHANGELOG.md
 LINES=$(grep -n "^##" -m 2 "${FILE}" | sed -e 's/:.*//g'| sed -z "s/\n/,/g" | sed "s/,$//")
-CHANGE_LOG=$(sed -n "${LINES}p" "${FILE}" | sed -e "/^$/d" -e "/^##/d")
+CHANGE_LOG=$(sed -n "${LINES}p" "${FILE}" | sed -e "/^$/d" -e "/^##/d" | sed -z "s/\n/\\\\n/g")
+echo "${CHANGE_LOG}"
 
-echo "${REF##*/}" && \
 curl -X POST \
      -H "Authorization: token ${GITHUB_TOKEN}" \
      -d "{ \"tag_name\": \"${TAG}\", \"name\": \"${NAME//-/} ${TAG}\", \"body\": \"${CHANGE_LOG}\"}" \
