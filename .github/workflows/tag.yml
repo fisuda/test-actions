@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - '**'
+      - 'main'
     tags:
       - 'v*'
 
@@ -20,5 +20,5 @@ jobs:
           echo "${REF##*/}" && \
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -d "{ \"tag_name\": \"${REF##*/}\", \"name\": \"TEST ${REF##*/}\", \"body\": \"# Test\"}" \
+            -d "{ \"tag_name\": \"${REF##*/}\", \"name\": \"FIWARE Big Bang ${REF##*/}\", \"body\": \"# Test\"}" \
             https://api.github.com/repos/${{ github.repository }}/releases
