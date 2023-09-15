@@ -77,7 +77,7 @@ rm -fr "${DIR}"
 ## Upload tgz file
 
 UPLOAD_URL=`echo "${RES}" | jq '. | .upload_url' | tr -d '"'`
-UPLOAD_URL="${UPLOAD_URL%%\{*}?name=${DIR}.tgz"
+UPLOAD_URL="${UPLOAD_URL%%\{*}?name=${FILE}"
 echo "UPLOAD URL: ${UPLOAD_URL}"
 
 curl -L -X POST ${UPLOAD_URL} -H "Authorization: Bearer ${GITHUB_TOKEN}" \
