@@ -32,7 +32,7 @@ cd "$(dirname "$0")"
 cd ..
 
 if ! [ "$(echo "${REF}" | grep "^refs/tags/v")" ]; then
-  exit 1
+  exit 0
 fi
 
 NAME=${REPO##*/}
