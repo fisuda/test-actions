@@ -83,4 +83,4 @@ echo "UPLOAD URL: ${UPLOAD_URL}"
 curl -L -X POST ${UPLOAD_URL} -H "Authorization: Bearer ${GITHUB_TOKEN}" \
      -H 'Accept: application/vnd.github+json' \
      -H 'Content-Type: application/gzip' \
-     --data-binary "${FILE}"
+     --data-binary "@${FILE}"
