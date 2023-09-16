@@ -32,13 +32,16 @@ cd "$(dirname "$0")"
 cd ..
 
 VER=$(cat VERSION)
+VER=${VER##*=}
 echo "${VER}"
 
-if [ "$(echo "${VER}" | grep "-next")" ]; then
+if echo "${VER}" | grep -q "-next"
+then
   exit 0
 fi
 
-if [ "$(git tag | grep "${VER}")" ]; then
+if git tag | grep -q "${VER}"
+then
   exit 0
 fi
 
