@@ -34,11 +34,11 @@ cd ..
 VER=$(cat VERSION)
 echo "${VER}"
 
-if ! [ "$(echo "${VER}" | grep "-next")" ]; then
+if [ "$(echo "${VER}" | grep "-next")" ]; then
   exit 0
 fi
 
-if ! [ "$(git tag | grep "${VER}")" ]; then
+if [ "$(git tag | grep "${VER}")" ]; then
   exit 0
 fi
 
