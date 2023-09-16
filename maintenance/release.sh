@@ -105,3 +105,21 @@ curl -L -X POST "${UPLOAD_URL}" -H "Authorization: Bearer ${GITHUB_TOKEN}" \
 
 git switch -c "${TAG}-next"
 git push origin "${TAG}-next"
+
+## Create branch
+git switch -c "release/${TAG}_next"
+
+for file in VERSION setup-fiware.sh
+do
+  file="${FISB_HOME}/${file}"
+  ls -l "${file}"
+  sed -i -e "s/${VER}/${VER}-next/" "${file}"
+done
+  
+sed -i "1i ## FIWARE Small Bang v${VER}-next\n" "${FISB_HOME}/CHANGELOG.md"
+  
+git add .
+git commit -m "Bump: ${TAG} -> ${TAG}-next"
+git push origin "release/${TAG}_next"
+
+gh pr create --base "${TAG}-next" --title "Bump: ${TAG} -> ${TAG}-next" --body "This PR is a preparation for the next release."
