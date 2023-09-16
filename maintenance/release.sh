@@ -31,7 +31,7 @@ set -ue
 cd "$(dirname "$0")"
 cd ..
 
-TAG=$(cat TAGSION)
+TAG=$(cat VERSION)
 TAG="v${TAG##*=}"
 echo "TAG: ${TAG}"
 
