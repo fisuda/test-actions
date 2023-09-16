@@ -1453,7 +1453,7 @@ setup_wirecloud() {
       - TRUST_PROXY_HEADERS=1
     restart: always
     ports:
-      - 3000:3000
+      - 3000.30.0-next
 EOF
   
   mkdir "${CONFIG_DIR}"/nginx
