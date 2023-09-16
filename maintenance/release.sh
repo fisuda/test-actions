@@ -34,7 +34,7 @@ cd ..
 if echo "${REF}" | grep -q "^refs/tags/v"
 then
   TAG=$(cat TAGSION)
-  TAG=${TAG##*=}
+  TAG="v${TAG##*=}"
   echo "TAG: ${TAG}"
 
   if echo "${TAG}" | grep -q "-next"
