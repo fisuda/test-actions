@@ -111,12 +111,11 @@ git switch -c "release/${TAG}_next"
 
 for file in VERSION setup-fiware.sh
 do
-  file="${FISB_HOME}/${file}"
-  ls -l "${file}"
+  file="${file}"
   sed -i -e "s/${VER}/${VER}-next/" "${file}"
 done
   
-sed -i "1i ## FIWARE Small Bang v${VER}-next\n" "${FISB_HOME}/CHANGELOG.md"
+sed -i "1i ## FIWARE Small Bang v${VER}-next\n" CHANGELOG.md
   
 git add .
 git commit -m "Bump: ${TAG} -> ${TAG}-next"
