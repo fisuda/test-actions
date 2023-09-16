@@ -33,7 +33,9 @@ cd ..
 
 TAG=$(cat VERSION)
 TAG="v${TAG##*=}"
+VER=${TAG//v/}
 echo "TAG: ${TAG}"
+echo "VER: ${VER}"
 
 if echo "${TAG}" | grep -q "-next"
 then
@@ -118,7 +120,7 @@ done
 sed -i "1i ## FIWARE Small Bang v${VER}-next\n" CHANGELOG.md
   
 git add .
-git commit -m "Bump: ${TAG} -> ${TAG}-next"
-git push origin "release/${TAG}_next"
+git commit -m "Bump: ${VER} -> ${VER}-next"
+git push origin "release/${VER}_next"
 
-gh pr create --base "${TAG}-next" --title "Bump: ${TAG} -> ${TAG}-next" --body "This PR is a preparation for the next release."
+gh pr create --base "${VER}-next" --title "Bump: ${VER} -> ${VER}-next" --body "This PR is a preparation for the next release."
