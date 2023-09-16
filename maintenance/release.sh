@@ -111,13 +111,15 @@ git push origin "${TAG}-next"
 ## Create branch
 git switch -c "release/${VER}_next"
 
+VER_SED=${VER//\./\\.}
+
 for file in VERSION setup-fiware.sh
 do
   file="${file}"
-  sed -i -e "s/${VER}/${VER}-next/" "${file}"
+  sed -i -e "s/${VER_SED}/${VER_SED}-next/" "${file}"
 done
   
-sed -i "1i ## FIWARE Small Bang v${VER}-next\n" CHANGELOG.md
+sed -i "1i ## FIWARE Small Bang v${VER_SED}-next\n" CHANGELOG.md
   
 git add .
 git commit -m "Bump: ${VER} -> ${VER}-next"
