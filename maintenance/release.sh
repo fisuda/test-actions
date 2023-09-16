@@ -123,4 +123,4 @@ git add .
 git commit -m "Bump: ${VER} -> ${VER}-next"
 git push origin "release/${VER}_next"
 
-gh pr create --base "${VER}-next" --head "release/${VER}_next" --title "Bump: ${VER} -> ${VER}-next" --body "This PR is a preparation for the next release."
+gh pr create --base "${TAG}-next" --head "release/${VER}_next" --title "Bump: ${VER} -> ${VER}-next" --body "This PR is a preparation for the next release."

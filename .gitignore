@@ -11,3 +11,5 @@ cert.sh
 Makefile
 coverage/
 *.swp
+*.tgz
+*.tar.gz
