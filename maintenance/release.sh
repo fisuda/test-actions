@@ -109,7 +109,7 @@ git switch -c "${TAG}-next"
 git push origin "${TAG}-next"
 
 ## Create branch
-git switch -c "release/${TAG}_next"
+git switch -c "release/${VER}_next"
 
 for file in VERSION setup-fiware.sh
 do
@@ -123,5 +123,4 @@ git add .
 git commit -m "Bump: ${VER} -> ${VER}-next"
 git push origin "release/${VER}_next"
 
-sleep 15
 gh pr create --base "${VER}-next" --head "release/${VER}_next" --title "Bump: ${VER} -> ${VER}-next" --body "This PR is a preparation for the next release."
