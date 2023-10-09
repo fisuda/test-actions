@@ -33,9 +33,16 @@ cd ..
 
 TAG=$(cat VERSION)
 TAG="v${TAG##*=}"
+VER=${TAG//v/}
 echo "TAG: ${TAG}"
+echo "VER: ${VER}"
 
 if echo "${TAG}" | grep -q "-next"
+then
+  exit 1
+fi
+
+if npm view node-red-contrib-letsfiware-ngsi --json | jq -r '.versions' | grep -q "${VER}"
 then
   exit 1
 fi
