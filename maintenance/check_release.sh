@@ -39,8 +39,3 @@ if echo "${TAG}" | grep -q "-next"
 then
   exit 1
 fi
-
-if git tag | grep -q "${TAG}"
-then
-  exit 1
-fi

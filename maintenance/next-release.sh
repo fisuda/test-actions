@@ -70,8 +70,59 @@ RES=$(curl -X POST \
      -d "{ \"tag_name\": \"${TAG}\", \"name\": \"${NAME//-/ } ${TAG}\", \"body\": \"${CHANGE_LOG}\"}" \
      "https://api.github.com/repos/${REPO}/releases")
 
-curl -X POST \
-     -H "Authorization: token ${GITHUB_TOKEN}" \
-     -H "Accept: application/vnd.github.v3+json" \
-     https://api.github.com/repos/fisuda/test-actions/actions/workflows/publish.yml/dispatches \
-     -d '{"ref":"master"}'
+# Create tgz file
+
+DIR="${NAME}-${TAG//v/}"
+mkdir "${DIR}"
+
+for FILE in LICENSE README.md config.sh setup-fiware.sh
+do
+  cp -a "${FILE}" "${DIR}/"
+done
+
+# for FILE in examples
+# do
+#   cp -ar "${FILE}" "${DIR}/"
+# done
+cp -ar examples "${DIR}/"
+
+FILE="${DIR}.tar.gz"
+
+tar czvf "${FILE}" "${DIR}"
+
+rm -fr "${DIR}"
+
+## Upload tgz file
+
+UPLOAD_URL=$(echo "${RES}" | jq '. | .upload_url' | tr -d '"')
+UPLOAD_URL="${UPLOAD_URL%%\{*}?name=${FILE}"
+echo "UPLOAD URL: ${UPLOAD_URL}"
+
+curl -L -X POST "${UPLOAD_URL}" -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+     -H 'Accept: application/vnd.github+json' \
+     -H 'Content-Type: application/gzip' \
+     --data-binary "@${FILE}"
+
+## Create -next branch
+
+git switch -c "${TAG}-next"
+git push origin "${TAG}-next"
+
+## Create branch
+git switch -c "release/${VER}_next"
+
+VER_SED=${VER//\./\\.}
+
+for file in VERSION setup-fiware.sh
+do
+  file="${file}"
+  sed -i -e "s/${VER_SED}/${VER_SED}-next/" "${file}"
+done
+  
+sed -i "1i ## FIWARE Small Bang v${VER_SED}-next\n" CHANGELOG.md
+  
+git add .
+git commit -m "Bump: ${VER} -> ${VER}-next"
+git push origin "release/${VER}_next"
+
+gh pr create --base "${TAG}-next" --head "release/${VER}_next" --title "Bump: ${VER} -> ${VER}-next" --body "This PR is a preparation for the next release."
