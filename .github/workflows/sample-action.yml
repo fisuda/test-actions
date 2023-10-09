@@ -1,0 +1,26 @@
+name: sample-action
+
+on: workflow_dispatch
+
+jobs:
+  something-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check something
+        id: check_something
+        run: exit `echo $(($RANDOM % 2))`
+        continue-on-error: true
+
+      - name: output step context
+        run: echo $CONTEXT
+        env:
+          CONTEXT: ${{ toJSON(steps.check_something) }}
+
+      - name: something when command success
+        run: echo "result - success"
+        if: steps.check_something.outcome == 'success'
+
+      - name: something when command failure
+        run: echo "result - failure"
+        if: steps.check_something.outcome == 'failure'
+
