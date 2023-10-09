@@ -1,0 +1,13 @@
+name: Publish node package to npmjs
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Run release
+        run: ./maintenance/publish.sh
