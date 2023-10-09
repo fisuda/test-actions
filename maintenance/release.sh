@@ -74,4 +74,4 @@ curl -X POST \
      -H "Authorization: token ${GITHUB_TOKEN}" \
      -H "Accept: application/vnd.github.v3+json" \
      https://api.github.com/repos/fisuda/test-actions/actions/workflows/publish.yml/dispatches \
-     -d '{"ref":"master"}'
+     -d '{"ref":"main"}'
