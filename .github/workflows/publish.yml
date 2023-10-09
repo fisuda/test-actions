@@ -1,13 +1,16 @@
 name: Publish node package to npmjs
 on:
   release:
-    types: [published]
+   workflow_dispatch:
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
         uses: actions/checkout@v3
+
+      - name: Run release
+        run: ./maintenance/check_release.sh
 
       - name: Run release
         run: ./maintenance/publish.sh
